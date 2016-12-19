@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<script>
+			function move() {
+				var btn = document.getElementById("btn");
+				var top = Number.parseInt(90 * Math.random());
+				var left = Number.parseInt(90 * Math.random());
+				console.log("W: top: " + top + "; left: " + left);
+				btn.style.top = top + "vh";
+				btn.style.left = left + "vw";
+				console.log("H: top: " + btn.style.top + "; left: " + btn.style.left);
+			}
+			
+			function bravo() {
+				alert("Devo ammettere che sei stato bravo....a cheattare!");
+			}
+			
+			function keyup(evt) {
+				if(evt.char == "k") {
+					bravo();
+				}
+			} 
+		</script>
+		<style>
+			#canvas {
+				border: 1px dotted black;
+				width: 100%;
+				height: 80vh;
+			}
+			#btn {
+				position: fixed;
+			}
+			button {
+				margin: 50px;
+			}
+		</style>
+	</head>
+	<body onkeyup="keyup()">
+		<h1>Premi il bottone!
+		<h2>...Se ci riesci!
+		<div id=canvas>
+			<div id=btn onmouseover="move()">
+				<button type=button onclick="bravo()">Ciao</button>
+			</div>
+		</div>
+	</body>
+</html>
