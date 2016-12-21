@@ -1,0 +1,77 @@
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<style>
+			textarea {
+				width: 40vw;
+				height: 80vh;
+			}
+			#ind { float: left; }
+			#outd { float: right; }
+		</style>
+		<script>
+			function conv() {
+				var _in  = document.getElementById("in");
+				var out = document.getElementById("out");
+				out.value = rot13(_in.value);
+			}
+			function isAlpha(code) {
+    				if (!(code > 47 && code < 58) && // numeric (0-9)
+        				!(code > 64 && code < 91) && // upper alpha (A-Z)
+        				!(code > 96 && code < 123)) { // lower alpha (a-z)
+      					return false;
+  				}
+  				return true;
+			}
+			function rot13(input) {
+                var lower = "abcdefghijklmnopqrstuvwxyz";
+                var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				var output = "";
+				for(var i = 0; i < input.length; i++) {
+					var chr = input.charAt(i);
+					var idx;
+					
+					if((idx = lower.indexOf(chr)) != -1) {
+                        output += lower.charAt((idx + 13) % 26);
+					} else if((idx = upper.indexOf(chr)) != -1) {
+                        output += upper.charAt((idx + 13) % 26);
+					} else {
+                        output += chr;
+					}
+				}
+				return output;
+			}
+			function copy() {
+                console.log("entering");
+                document.getElementById('out').select();
+                console.log("selected");
+                try{
+                    if(document.execCommand('copy')) {
+                        console.log("Copy succesful");
+                        var outl = document.getElementById('outl');
+                        outl.innerHTML = "Output: (copied to clipboard)";
+                    } else {
+                        console.log("Command failed");
+                    }
+                } catch(err) {
+                    console.log("Couldn't copy: " + err);
+                }
+			}
+			
+			function reset() {
+                document.getElementById('outl').innerHTML = "Output:";
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Robbery</h1>
+		<div id=ind >
+			<span id=inl>Input:</span><br/>
+			<textarea id=in oninput="conv()" onfocus="reset()" ></textarea>
+		</div>
+		<div id=outd>
+			<span id=outl>Output:</span></br>
+			<textarea id=out onfocus="copy()"></textarea>
+		</div>
+	</body>
+</html>
