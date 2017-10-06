@@ -1,10 +1,21 @@
 
 def space(string):
-	return ' '.join(string)
+    return ' '.join(string)
 
 def rotate(string, i):
-	return string[i:] + string [:i]
+    return string[i:] + string [:i]
 
 def box(string):
-	for i in range(len(string)):
-		print(space(rotate(string, i)))
+    string = string.upper()
+    for i in range(len(string)):
+        print(space(rotate(string, i)))
+    print()
+
+
+if __name__ == "__main__":
+    while True:
+        try:
+            string = input("> ")
+            box(string)
+        except KeyboardInterrupt:exit(0)
+
