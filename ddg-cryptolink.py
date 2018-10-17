@@ -9,7 +9,7 @@ from sys import argv
 escape_char = lambda char: "%%%02x" % ord(char)
 escape = lambda string: "".join([escape_char(ch) for ch in string])
 
-link = "ddg.gg/?kl=wt-wt&q={}"
+link = "ddg.gg/?kl=wt-wt&kp=-2&q={}"
 if len(argv) > 1:
     input_string = " ".join(argv[1:])
 else:
